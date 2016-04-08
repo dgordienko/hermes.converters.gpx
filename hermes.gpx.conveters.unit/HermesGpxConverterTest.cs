@@ -5,6 +5,8 @@ using Rhino.Mocks;
 using Distributor.Api.Core;
 using Hermes.Api.Clasess;
 using System.Collections.Generic;
+using System.Linq;
+using hermes.gpx.converters;
 
 namespace hermes.gpx.conveters.unit
 {
@@ -60,7 +62,7 @@ namespace hermes.gpx.conveters.unit
 				point.Position = position;
 				point.Speed = i * rnd.NextDouble () * 1000 / 3600;
 				point.Time = date.AddMinutes (i);
-				((List<IRoutePoint>)points0).Add (point);
+				((List<IRoutePoint>)points1).Add (point);
 			}
 			Segment0 = MockRepository.GenerateStub<IRouteSegment> ();
 			Segment0.Points = points0;
@@ -79,8 +81,21 @@ namespace hermes.gpx.conveters.unit
 		[Test (Description="Тестирование методов расшрения для элементов маршрута автотранспорта")]
 		public void ExtMethodsTestCase ()
 		{
+			Assert.IsNotNull (points0);
+			Console.WriteLine (string.Format ("Точек в первом сегменте {0}",points0.Count()));
+			Assert.IsNotNull (points1);
+			Console.WriteLine (string.Format ("Точек во втором сегменте {0}",points1.Count()));
+			Assert.IsNotNull (Segment0);
+			Assert.IsNotNull (Segment1);
+			Assert.IsNotNull (Route);
+			Assert.IsNotNull (Track);
+			//Должно выполнится без ошибки преобразование в загловок маршрута
+			Assert.DoesNotThrow (() => 
+				{
+					var header = points0.ToSegmentHeader();
+					Assert.That(header != null);
+				});
 
-			
 		}
 	}
 }
