@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hermes.gpx.converters", "hermes.gpx.converters\hermes.gpx.converters.csproj", "{B8C6EDC3-71E8-4701-B39C-CDD7CE857111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hermes.gpx.conveters.unit", "hermes.gpx.conveters.unit\hermes.gpx.conveters.unit.csproj", "{68E546D9-DAF8-46FE-8222-500D3D3B4210}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hermes.Api.Clasess.Geo", "Hermes.Api.Clasess.Geo\Hermes.Api.Clasess.Geo.csproj", "{9F2712A5-8EC8-4AEA-B5F0-D83B206D1BA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68E546D9-DAF8-46FE-8222-500D3D3B4210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E546D9-DAF8-46FE-8222-500D3D3B4210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E546D9-DAF8-46FE-8222-500D3D3B4210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E546D9-DAF8-46FE-8222-500D3D3B4210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F2712A5-8EC8-4AEA-B5F0-D83B206D1BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F2712A5-8EC8-4AEA-B5F0-D83B206D1BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F2712A5-8EC8-4AEA-B5F0-D83B206D1BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F2712A5-8EC8-4AEA-B5F0-D83B206D1BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8C6EDC3-71E8-4701-B39C-CDD7CE857111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8C6EDC3-71E8-4701-B39C-CDD7CE857111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8C6EDC3-71E8-4701-B39C-CDD7CE857111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8C6EDC3-71E8-4701-B39C-CDD7CE857111}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
