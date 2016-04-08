@@ -2,6 +2,7 @@
 using Distributor.Api.Core;
 using System.IO;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace hermes.gpx.converters
 {
@@ -10,8 +11,6 @@ namespace hermes.gpx.converters
 	/// Делегат событий разбора данных в формате gpx
 	/// </summary>
 	public delegate void HermesGpxFileConverterEvent(object sender,HermesGpxFileConverterArg arg);
-
-
 	/// <summary>
 	/// Базовый интерфейс конвертора данных в формате gpx
 	/// </summary>
@@ -22,10 +21,10 @@ namespace hermes.gpx.converters
 		/// </summary>
 		event HermesGpxFileConverterEvent Parced;
 		/// <summary>
-		/// Выполнение разбора сырых данных 
+		/// Выполнение разбора "сырых данных" переданных в объекте Stream c помощью алгоритма Action<T>, возвращающего результат вида ITrack
 		/// </summary>
 		/// <param name="parcesstrategy">Parcesstrategy.</param>
-		void Parce(Func<object,ITrack> parcesstrategy);
+		void Parce(Func<Stream,Action<Type>,ITrack> parcesstrategy);
 
 	}
 
