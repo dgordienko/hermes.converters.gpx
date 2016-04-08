@@ -26,6 +26,7 @@ namespace hermes.gpx.converters
 		/// </summary>
 		/// <param name="parcesstrategy">Parcesstrategy.</param>
 		void Parce(Func<object,ITrack> parcesstrategy);
+
 	}
 
 }

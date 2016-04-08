@@ -41,6 +41,9 @@
     <Reference Include="Distributor.Api.Core">
       <HintPath>..\packages\Distributor.Api.Core.1.0.0.2\lib\Distributor.Api.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\Downloads\Rhino\Rhino.Mocks.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HermesGpxConverterTest.cs" />
@@ -48,5 +51,15 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hermes.Api.Clasess.Geo\Hermes.Api.Clasess.Geo.csproj">
+      <Project>{9F2712A5-8EC8-4AEA-B5F0-D83B206D1BA0}</Project>
+      <Name>Hermes.Api.Clasess.Geo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\hermes.gpx.converters\hermes.gpx.converters.csproj">
+      <Project>{B8C6EDC3-71E8-4701-B39C-CDD7CE857111}</Project>
+      <Name>hermes.gpx.converters</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

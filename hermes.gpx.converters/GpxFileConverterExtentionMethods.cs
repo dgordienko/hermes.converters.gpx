@@ -12,6 +12,42 @@ namespace hermes.gpx.converters
 	public static class GpxFileConverterExtentionMethods
 	{
 		/// <summary>
+		///  Получение данных о сегменте маршрута транспорта
+		/// </summary>
+		/// <returns>The segment header.</returns>
+		/// <param name="points">Points.</param>
+		public static IRouteElementHeader ToSegmentHeader(this IEnumerable<IRoutePoint> points){
+			if (points == null)
+				throw new ArgumentNullException ("points");
+			var result = new RouteElementHeader ();
+
+			return result;
+		}
+
+		/// <summary>
+		/// Получение заголовочных данных по маршруту за день на основании данных сегмента
+		/// </summary>
+		/// <returns>The route header.</returns>
+		/// <param name="route">Route.</param>
+		public static IRouteElementHeader ToRouteHeader(this IEnumerable<IRouteSegment> segments){
+			if (segments == null)
+				throw new ArgumentNullException ("segments");
+			throw new NotImplementedException ();
+		}
+
+		/// <summary>
+		/// Получение заголовочных данных по треку на основании данных о маршрутах за день
+		/// </summary>
+		/// <returns>The track header.</returns>
+		/// <param name="routes">Routes.</param>
+		public static IRouteElementHeader ToTrackHeader(this IEnumerable<IRoute> routes){
+			if (routes == null)
+				throw new ArgumentNullException ("routes");
+			throw new NotImplementedException ();
+		}
+
+				
+		/// <summary>
 		/// Преобразование gpxfiles в требуемый формат для дальнейшей обработки
 		/// </summary>
 		/// <returns>The track item.</returns>
