@@ -29,6 +29,71 @@ namespace hermes.gpx.converters
 		/// </summary>
 		private const double EarthRadius = 6378.7;
 
+
+
+		/// <summary>
+		///  Возвращает дистанцию по сегменту трека
+		/// </summary>
+		/// <param name="points"></param>
+		/// <returns></returns>
+		public static double ToSegmentDistance(this IEnumerable<IRoutePoint> points )
+		{
+			if(points == null)
+				throw  new ArgumentNullException("points");
+			var p = points.ToList();
+			var result = 0.0;
+			for (var i = 0; i < p.Count; i++)
+			{
+				var p1 = p[i];
+				if (i == (p.Count - 1)) continue; //!+Что делать если точка одна
+				var p2 = p[i + 1];
+				result = result + GetDistanceFromPoints(p1, p2);                
+			}
+			return result;
+		}
+		/// <summary>
+		/// Длительность сегмента трека
+		/// </summary>
+		/// <param name="points">Набр точек, характеризующих маршрут трансопртного средства</param>
+		/// <returns></returns>
+		public static TimeSpan ToSegmentDuration(this IEnumerable<IRoutePoint> points)
+		{
+			if(points == null)
+				throw new ArgumentNullException("points");
+			var q = points.OrderBy (x => x.Time);
+			var d1 = q.FirstOrDefault();
+			var d2 = q.LastOrDefault();
+			if ((d2 != null) && (d1!=null)) return d2.Time - d1.Time;
+			return TimeSpan.Zero;
+		}
+		/// <summary>
+		/// Возвращает растояние между двумя географическими точками
+		/// </summary>
+		/// <param name="point1">Первая точка(начало отсчета)</param>
+		/// <param name="point2">Вторая точка(окончание отсчета)</param>
+		/// <returns>Растояние между двумя географическими точками</returns>
+		/// <remarks>
+		/// Используется расчет предоставленный  http://www.meridianworlddata.com/Distance-Calculation.asp
+		/// Формула расчета x = EarthRadius * arctan[sqrt(1-x^2)/x], где
+		/// EarthRadius - радиус Земли
+		/// х = x = [sin(lat1/57.2958) * sin(lat2/57.2958)] +
+		/// +[cos(lat1/57.2958) * cos(lat2/57.2958) * cos(lon2/57.2958 - lon1/57.2958)]
+		/// </remarks>
+		private static double GetDistanceFromPoints(IRoutePoint point1, IRoutePoint point2)
+		{
+			var dLat1InRad = point1.Position.Lat * (Math.PI / 180.0);
+			var dLong1InRad = point1.Position.Lon * (Math.PI / 180.0);
+			var dLat2InRad = point2.Position.Lat * (Math.PI / 180.0);
+			var dLong2InRad = point2.Position.Lon * (Math.PI / 180.0);
+			var dLongitude = dLong2InRad - dLong1InRad;
+			var dLatitude = dLat2InRad - dLat1InRad;
+			var x = Math.Pow(Math.Sin(dLatitude / 2.0), 2.0) +
+				Math.Cos(dLat1InRad) * Math.Cos(dLat2InRad) *
+				Math.Pow(Math.Sin(dLongitude / 2.0), 2.0);
+			var dist = 2.0 * Math.Atan2(Math.Sqrt(x), Math.Sqrt(1.0 - x));
+			return EarthRadius * dist;
+		}
+
 		/// <summary>
 		/// Возвращает треки из документа
 		/// </summary>
@@ -63,36 +128,7 @@ namespace hermes.gpx.converters
 				i++;
 			}
 			return result;
-		}
-
-
-		/// <summary>
-		/// Возвращает растояние между двумя географическими точками
-		/// </summary>
-		/// <param name="point1">Первая точка(начало отсчета)</param>
-		/// <param name="point2">Вторая точка(окончание отсчета)</param>
-		/// <returns>Растояние между двумя географическими точками</returns>
-		/// <remarks>
-		/// Используется расчет предоставленный  http://www.meridianworlddata.com/Distance-Calculation.asp
-		/// Формула расчета x = EarthRadius * arctan[sqrt(1-x^2)/x], где
-		/// EarthRadius - радиус Земли
-		/// х = x = [sin(lat1/57.2958) * sin(lat2/57.2958)] +
-		/// +[cos(lat1/57.2958) * cos(lat2/57.2958) * cos(lon2/57.2958 - lon1/57.2958)]
-		/// </remarks>
-		public static double GetPointsDistance(IPosition point1, IPosition point2)
-		{
-			var dLat1InRad = point1.Lat * (Math.PI / 180.0);
-			var dLong1InRad = point1.Lon * (Math.PI / 180.0);
-			var dLat2InRad = point2.Lat * (Math.PI / 180.0);
-			var dLong2InRad = point2.Lon * (Math.PI / 180.0);
-			var dLongitude = dLong2InRad - dLong1InRad;
-			var dLatitude = dLat2InRad - dLat1InRad;
-			var x = Math.Pow(Math.Sin(dLatitude / 2.0), 2.0) +
-				Math.Cos(dLat1InRad) * Math.Cos(dLat2InRad) *
-				Math.Pow(Math.Sin(dLongitude / 2.0), 2.0);
-			var dist = 2.0 * Math.Atan2(Math.Sqrt(x), Math.Sqrt(1.0 - x));
-			return EarthRadius * dist;
-		}
+		}			
 
 		/// <summary>
 		/// Преобразование элемента XML в точку марщрута
@@ -313,6 +349,7 @@ namespace hermes.gpx.converters
 			if(track.GetType() != typeof(Stream))
 				throw new NotSupportedException();
 			var result = new Track();
+			throw new NotImplementedException ();
 			return result;			
 		}		
 	}

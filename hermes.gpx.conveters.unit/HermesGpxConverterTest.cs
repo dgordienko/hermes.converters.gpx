@@ -17,22 +17,27 @@ namespace hermes.gpx.conveters.unit
 		/// Набор точек сегметов первого маршрута
 		/// </summary>
 		private IEnumerable<IRoutePoint> points0;
+
 		/// <summary>
 		/// Набор точек сегментов второго маршрута
 		/// </summary>
 		private IEnumerable <IRoutePoint> points1;
+
 		/// <summary>
 		/// Сегмент первого маршрута
 		/// </summary>
 		private IRouteSegment Segment0;
+
 		/// <summary>
 		/// Сегмент второго маршрута
 		/// </summary>
 		private IRouteSegment Segment1;
+
 		/// <summary>
 		/// Vfhihen
 		/// </summary>
 		private IRoute Route;
+
 		/// <summary>
 		/// Трек транспортного средства
 		/// </summary>
