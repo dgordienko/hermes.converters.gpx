@@ -57,6 +57,7 @@ namespace hermes.gpx.conveters.unit
 				point.Speed = i * rnd.NextDouble () * 1000 / 3600;
 				point.Time = date.AddMinutes (i);
 				((List<IRoutePoint>)points0).Add (point);
+
 			}
 			date = date.AddMinutes (120);
 			for (int i = 0; i < 100; i++) {
